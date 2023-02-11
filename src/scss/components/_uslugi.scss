@@ -1,0 +1,35 @@
+.card {
+  border-bottom: 1px var(--color-gold) solid;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  width: 95%;
+//   max-width: 60ch;
+
+  &-container {
+    margin: auto;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.service {
+  &-name {
+    // display: inline-block;
+    font-size: 1.5rem;
+  }
+  &-price {
+    background-color: var(--color-gold);
+    display: inline;
+    border-radius: 8px;
+    padding: 0.25rem;
+    margin-left: 3rem;
+  }
+  &-time {
+    background-color: var(--color-gold);
+    display: inline;
+    border-radius: 8px;
+    padding: 0.25rem;
+    margin-left: 1rem;
+  }
+}

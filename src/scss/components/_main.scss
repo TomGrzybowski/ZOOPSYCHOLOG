@@ -1,0 +1,54 @@
+main {
+  width: 95vw;
+  & .container {
+    max-width: 1400px;
+    margin: 4rem auto 0;
+  }
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  padding-left: 3rem;
+  z-index: 10;
+
+  &__button {
+    // width: 20rem;
+    height: 2em;
+    border: none;
+    background-color: var(--color-gold);
+    color: var(--color-background);
+  }
+}
+
+.header1 {
+  margin: 0;
+  font-size: 4rem;
+}
+
+.header2 {
+  margin: 0;
+  font-size: 2rem;
+  // width: 25ch;
+}
+
+.header3 {
+  margin: 0;
+  font-size: 1rem;
+  // width: 40ch;
+  color: var(--font-grey-color);
+}
+
+.lander-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
