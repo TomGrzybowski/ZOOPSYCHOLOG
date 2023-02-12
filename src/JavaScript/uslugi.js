@@ -1,9 +1,10 @@
 export function generateUslugi() {
-  const main = document.querySelector('.main');
+  const main = document.querySelector('.services');
   main.innerHTML = '';
 
   const cardContainer = document.createElement('div');
   cardContainer.classList.add('card-container');
+
   main.insertAdjacentElement('beforeend', cardContainer);
 
   const content = [
@@ -93,3 +94,5 @@ export function generateUslugi() {
     cardContainer.insertAdjacentElement('beforeend', card);
   }
 }
+
+window.onload = () => generateUslugi();

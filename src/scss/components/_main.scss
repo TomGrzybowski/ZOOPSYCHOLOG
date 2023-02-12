@@ -7,8 +7,8 @@ main {
 }
 
 .main-container {
-  display: grid;
-  grid-template-columns: 12rem 1fr;
+  // display: grid;
+  // grid-template-columns: 12rem 1fr;
 }
 
 .intro {
@@ -22,6 +22,8 @@ main {
 
   &__button {
     // width: 20rem;
+    width: 10rem;
+
     height: 2em;
     border: none;
     background-color: var(--color-gold);
@@ -31,12 +33,12 @@ main {
 
 .header1 {
   margin: 0;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .header2 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   // width: 25ch;
 }
 
@@ -51,4 +53,34 @@ main {
   position: relative;
   z-index: 1;
   width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .intro .header1 {
+    display: block;
+    font-size: 3rem;
+  }
+  .main-container {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+  }
+
+  .header1 {
+    margin: 0;
+    font-size: 2rem;
+    width: 20ch;
+  }
+
+  .header2 {
+    font-size: 2rem;
+    width: 25ch;
+  }
+
+  .header3 {
+    width: 40ch;
+  }
+
+  .intro__button {
+    width: 15rem;
+  }
 }

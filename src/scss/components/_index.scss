@@ -1,3 +1,5 @@
-@use './header';
-@use './main';
-@use './uslugi';
+@forward './header';
+@forward './main';
+@forward './services';
+@forward './modal';
+@forward './about';
