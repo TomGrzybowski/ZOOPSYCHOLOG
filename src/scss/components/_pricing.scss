@@ -1,0 +1,28 @@
+.pricing {
+  &__container {
+    margin: auto;
+    max-width: 80ch;
+  }
+
+  &__header {
+    text-decoration: underline;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+  }
+
+  &__list {
+    // margin: auto;
+    max-width: 320px;
+    margin-bottom: 3rem;
+  }
+}
+
+.warning {
+  margin: auto;
+  max-width: 80ch;
+}

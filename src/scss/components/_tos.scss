@@ -1,0 +1,61 @@
+.tos {
+  &__container {
+    padding-left: 1rem;
+    margin: auto;
+    max-width: 1000px;
+    position: relative;
+
+    & > div {
+      position: sticky;
+      top: 0;
+    }
+    // display: grid;
+    // grid-template-columns: 150px 1fr;
+    // row-gap: 3rem;
+  }
+  &__header {
+    text-align: center;
+  }
+
+  &__item {
+    margin-bottom: 1.5rem;
+  }
+
+  &__service-name {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-gold);
+    // height: 80px;
+  }
+}
+
+.service-tos {
+  max-width: 70ch;
+  list-style: disc;
+  padding-left: 2rem;
+  margin-bottom: 3rem;
+}
+
+.download {
+  margin: 10px auto;
+  text-align: center;
+  //   width: 10px;
+}
+
+@media screen and (min-width: 1200px) {
+  .tos {
+    &__container {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      row-gap: 3rem;
+
+      & > div {
+        position: static;
+      }
+    }
+
+    &__service-name {
+      height: 80px;
+    }
+  }
+}

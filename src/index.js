@@ -1,4 +1,6 @@
 import './scss/styles.scss';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const dogIcon = document.querySelector('.refresh');
 const uslugi = document.querySelector('.nav-uslugi');
@@ -21,4 +23,9 @@ burger.addEventListener('click', () => {
 close.addEventListener('click', () => {
   modal.style.transform = 'translate(100%, 0)';
   modal.classList.add('is-hidden');
+});
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
 });
