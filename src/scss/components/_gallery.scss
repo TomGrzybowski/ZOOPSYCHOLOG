@@ -14,7 +14,8 @@
 
   &__image {
     height: 100%;
-    width: 95vw;
+    width: 100%;
+    // width: 95vw;
     // max-width: 100%;
     object-fit: cover;
     transition: transform 300ms;
@@ -25,24 +26,28 @@
   }
 
   &__item {
-    width: 100%;
+    width: 95svw;
     overflow: hidden;
+  }
+
+  &__item--height-fit {
+    height: fit-content;
   }
 }
 
 @media screen and (min-width: 720px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
-    &__image {
-      width: 45vw;
+    &__item {
+      width: 45svw;
     }
   }
 }
 @media screen and (min-width: 1200px) {
   .gallery {
     grid-template-columns: repeat(3, 1fr);
-    &__image {
-      width: 30vw;
+    &__item {
+      width: 30svw;
     }
   }
 }

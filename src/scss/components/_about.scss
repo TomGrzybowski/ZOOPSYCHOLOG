@@ -1,6 +1,38 @@
 .about {
+  width: 100svw;
+  max-width: 1400px;
+  // overflow: hidden;
   & .container {
-    max-width: 70ch;
     padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__image {
+    margin: auto;
+    width: 80svw;
+    object-fit: contain;
+  }
+}
+.text-content {
+  max-width: 70ch;
+}
+
+@media screen and (min-width: 720px) {
+  .about {
+    & .container {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+    &__image {
+      width: 45svw;
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .about {
+    & .container {
+      grid-template-columns: 1fr 2fr;
+    }
   }
 }

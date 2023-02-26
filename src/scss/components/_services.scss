@@ -1,5 +1,5 @@
 .card {
-  border-bottom: 1px var(--color-gold) solid;
+  border-bottom: 1px var(--color-main) solid;
   padding-bottom: 1rem;
   padding-left: 2rem;
   // width: 95%;
@@ -34,14 +34,14 @@
     font-size: 1.5rem;
   }
   &-price {
-    background-color: var(--color-gold);
+    background-color: var(--color-main);
     display: inline;
     border-radius: 8px;
     padding: 0.25rem;
     margin-left: 1rem;
   }
   &-time {
-    background-color: var(--color-gold);
+    background-color: var(--color-main);
     display: inline;
     border-radius: 8px;
     padding: 0.25rem;

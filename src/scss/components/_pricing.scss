@@ -1,7 +1,16 @@
 .pricing {
   &__container {
     margin: auto;
-    max-width: 80ch;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__image {
+    height: 100%;
+    width: 100%;
+    max-width: 95svh;
+    object-fit: cover;
   }
 
   &__header {
@@ -25,4 +34,23 @@
 .warning {
   margin: auto;
   max-width: 80ch;
+}
+
+@media screen and (min-width: 720px) {
+  .pricing {
+    &__container {
+      // flex-direction: row;
+      gap: 1rem;
+    }
+    // &__image {
+    //   max-width: 700svh;
+    // }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .pricing {
+    &__container {
+      flex-direction: row;
+    }
+  }
 }

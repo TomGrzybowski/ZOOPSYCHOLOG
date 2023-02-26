@@ -1,5 +1,6 @@
 main {
   width: 95vw;
+  margin: auto;
   & .container {
     max-width: 1400px;
     margin: 4rem auto 0;
@@ -26,7 +27,7 @@ main {
 
     height: 2em;
     border: none;
-    background-color: var(--color-gold);
+    background-color: var(--color-main);
     color: var(--color-background);
   }
 }
