@@ -2,7 +2,7 @@
   &__container {
     padding-left: 1rem;
     margin: auto;
-    max-width: 1000px;
+    max-width: 1400px;
     position: relative;
 
     & > div {
@@ -27,6 +27,10 @@
     background-color: var(--color-main);
     // height: 80px;
   }
+
+  &__image_container {
+    display: none;
+  }
 }
 
 .service-tos {
@@ -46,12 +50,16 @@
   .tos {
     &__container {
       display: grid;
-      grid-template-columns: 150px 1fr;
+      grid-template-columns: 150px 1fr 400px;
       row-gap: 3rem;
 
       & > div {
         position: static;
       }
+    }
+
+    &__image_container {
+      display: block;
     }
 
     &__service-name {
