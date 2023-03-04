@@ -21,6 +21,20 @@
   display: none;
 }
 
+.nav__list > :not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  width: 65%;
+  height: 5px;
+  background-color: var(--color-main);
+  opacity: 0;
+}
+
+.nav__list > .nav__item.active::before {
+  opacity: 1;
+}
+
 .fa-bars {
   position: absolute;
   top: 50%;
@@ -37,6 +51,7 @@
 }
 
 .nav__item {
+  position: relative;
   font-size: 1.1rem;
   &:hover {
     text-decoration: underline;

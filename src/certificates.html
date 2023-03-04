@@ -9,5 +9,15 @@
     <include src="./partials-html/certificates-partial.html"></include>
 
     <script src="./index.js" type="module"></script>
+    <script>
+      const navItems = document.querySelectorAll('.nav__item');
+      // hide all ::before pseudoelements
+      navItems.forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // show ::before pseudoelement of clicked element
+      navItems[6].classList.add('active');
+    </script>
   </body>
 </html>
