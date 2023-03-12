@@ -29,13 +29,3 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-
-const navItems = document.querySelectorAll('.nav__item');
-
-// // hide all ::before pseudoelements
-// navItems.forEach(item => {
-//   item.classList.remove('active');
-// });
-
-// // show ::before pseudoelement of clicked element
-// navItems[].classList.add('active');

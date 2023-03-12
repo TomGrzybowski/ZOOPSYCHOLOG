@@ -1,0 +1,24 @@
+.admin-panel {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.edit-form {
+  display: grid;
+  width: 600px;
+  //   gap: 1rem;
+}
+
+#opis,
+#regulamin {
+  //   width: 600px;
+  height: 15rem;
+}
+
+.submit-button {
+  margin-top: 2rem;
+}

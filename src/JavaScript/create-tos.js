@@ -1,17 +1,20 @@
-<main class="tos">
-  <div class="download">
-    <a href="./assets/approval/zgoda.pdf" download>
-      <svg class="download-icon" width="24" height="24" viewBox="0 0 24 24">
-        <use href="./assets/icons/symbol-defs.svg#file-pdf"></use>
-      </svg>
-      Zgoda dla osoby młodocioanej
-    </a>
-  </div>
-  <h2 class="tos__header">Regulamin</h2>
-  <div class="tos__container">
-    <div class="tos__content"></div>
-    <div class="tos__images">
-      <img
+import { initializeApp } from 'firebase/app';
+
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyD7SHFAIzoI8CNGbFmMeHZBfj8AgAlsMNw',
+  authDomain: 'zrozumiecpsieemocje.firebaseapp.com',
+  projectId: 'zrozumiecpsieemocje',
+  storageBucket: 'zrozumiecpsieemocje.appspot.com',
+  messagingSenderId: '1064173396236',
+  appId: '1:1064173396236:web:47f9659ef5c1f6240b6929',
+  measurementId: 'G-D038YQHZVF',
+};
+
+const imageList = [
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-2-911.jpg"
         srcset="
@@ -22,8 +25,10 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Owczarek niemiecki leżący na polnej drodze"
         title="Owczarek niemiecki"
-      />
-      <img
+      />`,
+  },
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-3-400.jpg"
         srcset="
@@ -34,8 +39,10 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Kobieta głaszcząca psa"
         title="Głaszczę psa"
-      />
-      <img
+      />`,
+  },
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-4-1152.jpg"
         srcset="
@@ -46,8 +53,10 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Pies Lessy biegnący po polu"
         title="Biegnący pies"
-      />
-      <img
+      />`,
+  },
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-6-267.jpg"
         srcset="
@@ -58,8 +67,10 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Pies oparty o ławkę"
         title="Pies oparty o ławkę"
-      />
-      <img
+      />`,
+  },
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-11-1152.jpg"
         srcset="
@@ -70,8 +81,10 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Owczarek na smyczy w parku"
         title="Owczarek na smyczy w parku"
-      />
-      <img
+      />`,
+  },
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-8-400.jpg"
         srcset="
@@ -82,8 +95,10 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Pies przy jeziorze"
         title="Pies przy jeziorze"
-      />
-      <img
+      />`,
+  },
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-9-1152.jpg"
         srcset="
@@ -94,8 +109,10 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Pies w lesie"
         title="Pies w lesie"
-      />
-      <img
+      />`,
+  },
+  {
+    html: `<img
         class="tos__image"
         src="./assets/photo-10-1152.jpg"
         srcset="
@@ -106,7 +123,35 @@
         sizes="(min-width: 1200px) 30vw, (min-width: 720x) 45vw, 95vw"
         alt="Kobieta z psem w lesie"
         title="Kobieta z psem w lesie"
-      />
-    </div>
-  </div>
-</main>
+      />`,
+  },
+];
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const servicesRef = collection(db, 'services');
+
+const tosContent = document.querySelector('.tos__content');
+
+getDocs(servicesRef).then(querySnapshot => {
+  const input = querySnapshot.docs.map(doc => doc.data());
+  tosContent.innerHTML = '';
+
+  input.forEach((elem, index) => {
+    const header = document.createElement('div');
+    header.innerHTML = `<h3 class="tos__service-name">${elem.name}:</h3>`;
+
+    const tos = document.createElement('p');
+    tos.classList.add('service-tos');
+    tos.innerHTML = elem.tos;
+
+    // const image = document.createElement('div');
+    // image.classList.add('tos__image_container');
+    // const imageListHTML = imageList[index] ? imageList[index].html : '';
+    // image.innerHTML = imageListHTML ? imageListHTML : '';
+
+    tosContent.insertAdjacentElement('beforeend', header);
+    tosContent.insertAdjacentElement('beforeend', tos);
+    // tosContent.insertAdjacentElement('beforeend', image);
+  });
+});
