@@ -22,7 +22,7 @@ getDocs(servicesRef).then(querySnapshot => {
   const input = querySnapshot.docs.map(doc => doc.data());
   tosContent.innerHTML = '';
 
-  input.forEach((elem, index) => {
+  input.forEach(elem => {
     const header = document.createElement('div');
     header.innerHTML = `<h3 class="tos__service-name">${elem.name}:</h3>`;
 
