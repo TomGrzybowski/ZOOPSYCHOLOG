@@ -9,6 +9,7 @@ import {
   where,
   updateDoc,
   doc,
+  deleteDoc,
 } from 'firebase/firestore/lite';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -94,6 +95,7 @@ function createEditingForm() {
 	<select id="mode" name="mode">
 		<option value="add-new">Nowa usługa</option>
 		<option value="edit">Edytuj</option>
+		<option value="remove">Usuń</option>
 	</select>
 
 	<div id="service-select" style="display: none;">
@@ -104,13 +106,13 @@ function createEditingForm() {
 	<label for="nazwa-uslugi" class="nazwa-uslugi-label">Nazwa uslugi:</label>
 	<input type="text" id="nazwa-uslugi" name="nazwa-uslugi">
 	
-	<label for="cena">Cena:</label>
+	<label for="cena" class="cena-label">Cena:</label>
 	<input type="number" id="cena" name="cena">
 	
-	<label for="opis">Opis:</label>
+	<label for="opis" class="opis-label">Opis:</label>
 	<textarea id="opis" name="opis"></textarea>
 	
-	<label for="regulamin">Regulamin:</label>
+	<label for="regulamin" class="regulamin-label">Regulamin:</label>
 	<textarea id="regulamin" name="regulamin"></textarea>
 	
 	<input type="submit" value="Submit" class="submit-button">
@@ -119,21 +121,53 @@ function createEditingForm() {
   const modeSelect = document.querySelector('#mode');
   const serviceSelect = document.querySelector('#service-select');
   const nazwaUslugiLabel = document.querySelector('.nazwa-uslugi-label');
-
   const nazwaUslugiInput = document.querySelector('#nazwa-uslugi');
   const mainForm = document.querySelector('.edit-form');
+  const priceLabel = document.querySelector('.cena-label');
+  const priceInput = document.querySelector('#cena');
+  const opisLabel = document.querySelector('.opis-label');
+  const opisInput = document.querySelector('#opis');
+  const regulaminLabel = document.querySelector('.regulamin-label');
+  const regulaminInput = document.querySelector('#regulamin');
 
   modeSelect.addEventListener('change', () => {
     if (modeSelect.value === 'edit') {
       serviceSelect.style.display = 'block';
       nazwaUslugiInput.style.display = 'none';
       nazwaUslugiLabel.style.display = 'none';
+
+      priceLabel.style.display = 'block';
+      priceInput.style.display = 'block';
+      opisLabel.style.display = 'block';
+      opisInput.style.display = 'block';
+      regulaminLabel.style.display = 'block';
+      regulaminInput.style.display = 'block';
       displayServiceNames();
-    } else {
+      fillInInputs();
+    } else if (modeSelect.value === 'add-new') {
       serviceSelect.style.display = 'none';
       nazwaUslugiInput.style.display = 'block';
       nazwaUslugiLabel.style.display = 'block';
+
+      priceLabel.style.display = 'block';
+      priceInput.style.display = 'block';
+      opisLabel.style.display = 'block';
+      opisInput.style.display = 'block';
+      regulaminLabel.style.display = 'block';
+      regulaminInput.style.display = 'block';
       mainForm.reset();
+    } else if (modeSelect.value === 'remove') {
+      serviceSelect.style.display = 'block';
+      nazwaUslugiInput.style.display = 'none';
+      nazwaUslugiLabel.style.display = 'none';
+
+      priceLabel.style.display = 'none';
+      priceInput.style.display = 'none';
+      opisLabel.style.display = 'none';
+      opisInput.style.display = 'none';
+      regulaminLabel.style.display = 'none';
+      regulaminInput.style.display = 'none';
+      displayServiceNames();
     }
   });
 
@@ -171,6 +205,14 @@ function createEditingForm() {
         Notify.failure('Wypełnij wszystkie pola formularza');
         return;
       }
+
+      const querySnapshot = await getDocs(
+        query(collection(db, 'services'), where('name', '==', name))
+      );
+      if (!querySnapshot.empty) {
+        Notify.failure('Usługa o podanej nazwie już istnieje');
+        return;
+      }
       await addDoc(servicesRef, data);
       // Clear the input fields after adding a new service
       mainForm.reset();
@@ -200,6 +242,32 @@ function createEditingForm() {
         Notify.success('Usługa zaktualizowana');
       } else {
         Notify.failure('Usługa nieznaleziona');
+      }
+    } else if (mode === 'remove') {
+      const serviceName = document.querySelector('#service-name').value;
+
+      // Confirm with the user before deleting the service
+      const confirmed = confirm(
+        `Czy jesteś pewna, że chcesz usunąć usługę ${serviceName}?`
+      );
+
+      if (confirmed) {
+        // Query for the service based on the specified name
+        const querySnapshot = await getDocs(
+          query(collection(db, 'services'), where('name', '==', serviceName))
+        );
+
+        if (querySnapshot.docs.length > 0) {
+          // Delete the service if it exists
+          const serviceId = querySnapshot.docs[0].id;
+          await deleteDoc(doc(db, 'services', serviceId));
+
+          // Show a success message
+          Notify.success(`Usunięto usługę  ${serviceName}`);
+        } else {
+          // Show an error message if the service does not exist
+          Notify.failure('Nie znaleziono usługi');
+        }
       }
     }
   }
@@ -247,8 +315,6 @@ function createEditingForm() {
           option.text = name;
           serviceSelect.appendChild(option);
         });
-
-        fillInInputs();
       })
       .catch(error => {
         console.log('Error getting documents: ', error);
