@@ -90,14 +90,14 @@ logoutBtn.addEventListener('click', e => {
 function createEditingForm() {
   const box = document.querySelector('.editing');
   box.innerHTML = `<form class="edit-form">
-	<label for="mode">Choose mode:</label>
+	<label for="mode">Wybierz tryb:</label>
 	<select id="mode" name="mode">
-		<option value="add-new">Add new</option>
-		<option value="edit">Edit</option>
+		<option value="add-new">Nowa usługa</option>
+		<option value="edit">Edytuj</option>
 	</select>
 
 	<div id="service-select" style="display: none;">
-		<label for="service-name">Select service:</label>
+		<label for="service-name">Wybierz usługę:</label>
 		<select id="service-name" name="service-name"></select>
 	</div>
 
@@ -190,7 +190,7 @@ function createEditingForm() {
           description: document
             .querySelector('#opis')
             .value.replace(/\n/g, '<br>'),
-          terms: document
+          tos: document
             .querySelector('#regulamin')
             .value.replace(/\n/g, '<br>'),
         };
